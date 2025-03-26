@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Care Resources</title>
+    <link rel="stylesheet" href="health.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Self-Care Resources</h1>
+        <nav>
+            <ul class="navbar">
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="Find Healthcare.html">Find Healthcare</a></li>
+                <li><a href="Self-Care Resources.html">Self-Care Resources</a></li>
+                <li><a href="Doctor.html">Consult a Volunteer/Doctor</a></li>
+                <li><a href="About us.html">About Us</a></li>
+                <li><a href="Contact us.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" placeholder="Search for self-care topics..." onkeypress="handleSearch(event)">
+    <button onclick="searchContent()">Search</button>
+
+    <div id="results"></div>
+
+    <section class="categories">
+        <h2>Browse by Category</h2>
+        <div class="category-list">
+            <button class="category-btn">Fever</button>
+            <button class="category-btn">Cold</button>
+            <button class="category-btn">Diabetes</button>
+            <button class="category-btn">Skin Problems</button>
+            <button class="category-btn">Headache</button>
+        </div>
+    </section>
+
+
+    <div id="expert-articles">
+        <h2>Expert Articles</h2>
+        <div id="blogs-container"></div>
+
+    </div>
+
+
+    <!-- Video Section -->
+
+
+    <!-- AI-Powered Recommendations -->
+    <section class="ai-recommendations">
+        <h2 class="section-title">Recommendation Article</h2>
+        <p>Based on your searches, here are some suggested resources.</p>
+        <ul>
+            <li><a href="#">How to Boost Immunity Naturally</a></li>
+            <li><a href="#">Best Diet for Managing Skin Problems</a></li>
+        </ul>
+    </section>
+
+
+    <script>
+
+        const contentData = {
+            fever: {
+                videos: [
+                    { url: "https://www.youtube.com/embed/video1" },
+                    { url: "https://www.youtube.com/embed/video2" },
+                    { url: "https://www.youtube.com/embed/video3" },
+                    { url: "https://www.youtube.com/embed/video4" }
+                ],
+                blogs: [
+                    { title: "Natural Remedies for Fever", url: "https://example.com/fever1", image: "https://example.com/images/fever1.jpg" },
+                    { title: "How to Reduce Fever at Home", url: "https://example.com/fever2", image: "https://example.com/images/fever2.jpg" },
+                    { title: "Top 5 Fever Treatments", url: "https://example.com/fever3", image: "https://example.com/images/fever3.jpg" },
+                    { title: "When to See a Doctor for Fever", url: "https://example.com/fever4", image: "https://example.com/images/fever4.jpg" }
+                ]
+            },
+            cold: {
+                videos: [
+                    { url: "https://www.youtube.com/embed/XslI8h7cGDs?si=ofQLYP94nWcq80wA" },
+                    { url: "https://www.youtube.com/embed/video6" },
+                    { url: "https://www.youtube.com/embed/video7" },
+                    { url: "https://www.youtube.com/embed/video8" }
+                ],
+                blogs: [
+                    { title: "Home Remedies for Cold", url: "https://example.com/cold1", image: "https://example.com/images/cold1.jpg" },
+                    { title: "Best Soups for Cold Relief", url: "https://example.com/cold2", image: "https://example.com/images/cold2.jpg" },
+                    { title: "Cold Treatment at Home", url: "https://example.com/cold3", image: "https://example.com/images/cold3.jpg" },
+                    { title: "Preventing Seasonal Cold", url: "https://example.com/cold4", image: "https://example.com/images/cold4.jpg" }
+                ]
+            }
+        };
+
+        function handleSearch(event) {
+            if (event.key === "Enter") {
+                searchContent();
+            }
+        }
+
+        function searchContent() {
+            let query = document.getElementById("searchInput").value.toLowerCase();
+            let resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            if (contentData[query]) {
+                let videosHTML = contentData[query].videos.map(video =>
+                    `<div class="video-item">
+                        <iframe width="300" height="200" src="${video.url}" frameborder="0" allowfullscreen></iframe>
+                    </div>`
+                ).join("");
+
+                let blogsHTML = contentData[query].blogs.map(blog =>
+                    `<a href="${blog.url}" target="_blank" class="blog-item">
+                        <img src="${blog.image}" alt="${blog.title}" class="blog-image">
+                        <p>${blog.title}</p>
+                    </a>`
+                ).join("");
+
+                resultsDiv.innerHTML = `
+                    <h3>Videos</h3>
+                    <div class="video-container">${videosHTML}</div>
+                    <h3>Blogs</h3>
+                    <div class="blog-container">${blogsHTML}</div>
+                `;
+            } else {
+                resultsDiv.innerHTML = "<p>No results found. Try searching for Fever or Cold.</p>";
+            }
+        }
+    </script>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><img
+                        src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="Facebook"></a>
+                <a href="https://instagram.com" target="_blank"><img
+                        src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+                <a href="https://linkedin.com" target="_blank"><img
+                        src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+                <a href="https://twitter.com" target="_blank"><img
+                        src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+                <a href="https://youtube.com" target="_blank"><img
+                        src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"></a>
+
+                <p class="copyright">©2024 Your Healthcare Website. All Rights Reserved.</p>
+            </div>
+
+            <div class="footer-right">
+                <p>Developed and Maintained by <b>Health Connect</b></p>
+                <img src="images/logo.png" alt="Company Logo">
+            </div>
+        </div>
+
+        <a href="#emergencyModal" class="emergency-btn">🚑 Emergency</a>
+
+        <div id="emergencyModal" class="modal">
+            <div class="modal-content">
+                <a href="#" class="close-btn">&times;</a>
+                <h3>Emergency Contacts</h3>
+                <p>🚑 Ambulance: <a href="tel:108">108</a></p>
+                <p>🚔 Police: <a href="tel:100">100</a></p>
+                <p>🔥 Fire: <a href="tel:101">101</a></p>
+                <p>👨‍⚕️ Medical Helpline: <a href="tel:102">102</a></p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="https://zydushospitals.com/public/storage/static/terms-and-conditions-zydus.pdf"
+                target="_blank">Terms & Conditions |</a>
+            <a href="https://zydushospitals.com/public/storage/static/terms-and-conditions-zydus.pdf"
+                target="_blank">Privacy Policy |</a>
+            <a href="https://zydushospitals.com/public/storage/static/zydus-payment-policy.pdf" target="_blank">Payment
+                Policy</a>
+        </div>
+    </footer>
+</body>
+
+</html>
